@@ -17,6 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from contacts.views import ContactsAPIView, ContactAPIDetailView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/contacts/', ContactsAPIView.as_view()),
+    path('api/v1/contacts/<int:pk>/', ContactAPIDetailView.as_view())
+
 ]
