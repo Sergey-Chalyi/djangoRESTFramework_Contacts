@@ -12,7 +12,7 @@ class RegionRestrictionMiddleware:
 
     def get_client_ip(self, request):
         if settings.DEBUG:  # Если включен режим разработки
-            return '88.130.76.202'
+            return '91.203.145.44'
 
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
@@ -27,9 +27,7 @@ class RegionRestrictionMiddleware:
         try:
             response = requests.get(GEOLOCATION_URL.format(ip=ip_address))
             data = response.json()
-            print(data)
             country = data.get('country')
-            print(country)
         except Exception as e:
             print(f"Error: {e}")  # добавил для отладки
             return JsonResponse({'details': "Couldn't get the information about ip"}, status=500)
